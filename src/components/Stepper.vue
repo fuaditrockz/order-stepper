@@ -5,8 +5,9 @@
     </v-row>
     <v-row class="content">
       <v-col cols="8" class="content-container">
-        <v-row>
-          <h1>Delivery Details</h1>
+        <v-row class="content-header">
+          <Title size="big" title="Delivery Details" />
+          <RegularText textType="bold" content="Send as dropshipper"/>
         </v-row>
       </v-col>
       <v-col cols="4" class="summary-container">
@@ -17,8 +18,15 @@
 </template>
 
 <script>
+import Title from './sub-components/Title'
+import RegularText from './sub-components/RegularText'
+
 export default {
   name: 'Stepper',
+  components: {
+    Title,
+    RegularText
+  },
   props: {
     previousPage: String
   }
@@ -27,15 +35,18 @@ export default {
 
 <style lang="stylus" scoped>
 .container
-  border-radius 8px
+  border-radius 5px
   background-color white
   min-height 200px
-  -webkit-box-shadow: 3px 6px 17px -3px rgba(213, 155, 46, 0.61)
-  box-shadow: 3px 6px 17px -3px rgba(213, 155, 46, 0.61)
+  -webkit-box-shadow: 2px 10px 40px 0.3px rgba(255, 138, 0, 0.3)
+  box-shadow: 2px 10px 40px 0.3px rgba(255, 138, 0, 0.3)
 .header
   padding 10px 40px
 .content
   padding 10px 40px
+.content-container
+  .content-header
+    justify-content space-between
 .summary-container
   background-color #f44531
 </style>

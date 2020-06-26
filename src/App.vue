@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <Stepper/>
+      <Stepper previousPage="cart"/>
     </v-main>
   </v-app>
 </template>
@@ -27,9 +27,9 @@ export default {
   margin 0
   padding 0
 body
-  background-color #fffae6
+  background-color #FFFAE6
   padding 20
 .v-main__wrap
-  background-color #fffae6
+  background-color #FFFAE6
   padding-top 20px
 </style>

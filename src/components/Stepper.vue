@@ -1,13 +1,16 @@
 <template>
   <v-container>
     <v-row class="header">
+      <v-icon>email</v-icon>
       <h4>Back to {{ previousPage }}</h4>
     </v-row>
     <v-row class="content">
       <v-col cols="8" class="content-container">
         <v-row class="content-header">
           <Title size="big" title="Delivery Details" />
-          <RegularText textType="bold" content="Send as dropshipper"/>
+          <div>
+            <v-checkbox :label="`Send as dropshipper`" />
+          </div>
         </v-row>
       </v-col>
       <v-col cols="4" class="summary-container">
@@ -19,13 +22,11 @@
 
 <script>
 import Title from './sub-components/Title'
-import RegularText from './sub-components/RegularText'
 
 export default {
   name: 'Stepper',
   components: {
-    Title,
-    RegularText
+    Title
   },
   props: {
     previousPage: String

@@ -1,7 +1,22 @@
 <template>
-  <v-col cols="6">
+  <v-col cols="6" v-if="textInputType === 'free-text'">
     <div>
-      <input type="text" id="email" :placeholder="placeholder">
+      <textarea
+        :id="id"
+        :placeholder="placeholder"
+        type="text"
+        class="free-text input-style"
+      />
+    </div>
+  </v-col>
+  <v-col cols="6" v-else>
+    <div>
+      <input
+        type="text"
+        :id="id"
+        :placeholder="placeholder"
+        class="input-style"
+      />
     </div>
   </v-col>
 </template>
@@ -10,7 +25,9 @@
 export default {
   name: 'TextInput',
   props: {
-    placeholder: String
+    placeholder: String,
+    id: String,
+    textInputType: String
   }
 }
 </script>
@@ -21,8 +38,11 @@ export default {
   margin-bottom 10px
 div
   width 92%
-  input
+  .input-style
+    width 100%
     border 2px solid #ccc
     padding 15px 15px
-    width 100%
+  .free-text
+    height 150px
+  
 </style>

@@ -12,10 +12,15 @@
           </div>
         </v-row>
         <v-row>
-          <TextInput placeholder="Email" />
-          <TextInput placeholder="Dropshipper name" />
-          <TextInput placeholder="Phone Number" />
-          <TextInput placeholder="Dropshipper phone number" />
+          <TextInput placeholder="Email" id="email" />
+          <TextInput placeholder="Dropshipper name" id="drophsipper-name" />
+          <TextInput placeholder="Phone Number" id="phone-number" />
+          <TextInput placeholder="Dropshipper phone number" id="dropshipper-phone-number" />
+          <TextInput
+            placeholder="Address"
+            id="address"
+            textInputType="free-text"
+          />
         </v-row>
       </v-col>
       <v-col cols="4" class="summary-container">

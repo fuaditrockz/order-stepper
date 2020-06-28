@@ -3,13 +3,13 @@
     <div class="indicator-wrapper">
       <ul>
         <li>
-          <IndicatorList number="1" title="Delivery" isHaveIcon="true" isActive="true" />
+          <IndicatorList :number="1" title="Delivery" :isHaveIcon="true" :isActive="true" />
         </li>
         <li>
-          <IndicatorList number="2" title="Payment" isHaveIcon="true" />
+          <IndicatorList :number="2" title="Payment" :isHaveIcon="true" />
         </li>
         <li>
-          <IndicatorList number="3" title="Finish" />
+          <IndicatorList :number="3" title="Finish" />
         </li>
       </ul>
     </div>

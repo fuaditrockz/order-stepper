@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <StepperIndicator />
-    <StepperHeader previousPage="cart" isBack="true" />
+    <StepperHeader previousPage="cart" :isBack="true" />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="deliveryDetails"/>
       <Summary />

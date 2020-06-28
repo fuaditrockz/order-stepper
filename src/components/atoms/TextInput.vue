@@ -16,6 +16,7 @@
         :id="id"
         :placeholder="placeholder"
         class="input-style mb-3"
+        :disabled="isDisabled"
       />
     </div>
   </v-col>
@@ -27,7 +28,8 @@ export default {
   props: {
     placeholder: String,
     id: String,
-    textInputType: String
+    textInputType: String,
+    isDisabled: Boolean
   }
 }
 </script>

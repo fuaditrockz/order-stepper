@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="6" v-if="textInputType === 'free-text'">
+  <v-col cols="12" lg="6" class="pb-1" v-if="textInputType === 'free-text'">
     <div>
       <textarea
         :id="id"
@@ -9,7 +9,7 @@
       />
     </div>
   </v-col>
-  <v-col cols="6" v-else>
+  <v-col cols="12" lg="6" class="pb-1" v-else>
     <div>
       <input
         type="text"
@@ -33,9 +33,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.col-6
-  padding 0
-  margin-bottom 10px
 div
   width 92%
   .input-style

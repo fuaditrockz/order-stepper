@@ -40,4 +40,7 @@ p
   color #FF8A00
 .spacing-between
   justify-content space-between
+  display flex
+.zero-padding
+  padding 0
 </style>

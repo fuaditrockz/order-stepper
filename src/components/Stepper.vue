@@ -4,7 +4,7 @@
       <BackButton content="cart"/>
     </v-row>
     <v-row class="content">
-      <v-col cols="8" class="content-container">
+      <v-col sm="12" lg="8" class="content-container">
         <v-row class="content-header spacing-between">
           <Title size="big" title="Delivery Details" />
           <div>
@@ -23,30 +23,30 @@
           />
         </v-row>
       </v-col>
-      <v-col cols="4" class="summary-container">
+      <v-col sm="12" lg="4" class="summary-container zero-padding">
         <v-col>
           <Title title="Summary" />
           <p>10 items purchased</p>
-          <div class="push-content">
+        </v-col>
+        <div class="push-content">
 
+        </div>
+        <v-col>
+          <div class="spacing-between">
+            <p>Cost of goods</p>
+            <h4>500,000</h4>
           </div>
-          <v-col>
-            <v-row class="spacing-between">
-              <p>Cost of goods</p>
-              <h4>500,000</h4>
-            </v-row>
-            <v-row class="spacing-between">
-              <p>Dropshipping fee</p>
-              <h4>5,900</h4>
-            </v-row>
-            <v-row class="spacing-between mb-5">
-              <Title title="Total" />
-              <Title title="505,900" />
-            </v-row>
-            <v-row class="centerized-content">
-              <SubmitButton title="Continue to Payment" />
-            </v-row>
-          </v-col>
+          <div class="spacing-between">
+            <p>Dropshipping fee</p>
+            <h4>5,900</h4>
+          </div>
+          <div class="spacing-between mb-5">
+            <Title title="Total" />
+            <Title title="505,900" />
+          </div>
+          <div class="centerized-content">
+            <SubmitButton title="Continue to Payment" />
+          </div>
         </v-col>
       </v-col>
     </v-row>

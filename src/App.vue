@@ -31,7 +31,7 @@ p
   color #535c68
 .v-main__wrap
   background-color #FFFAE6
-  padding-top 20px
+  padding-top 50px
 .primary-bg-color
   background-color #FF8A00
 .primary-color

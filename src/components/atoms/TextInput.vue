@@ -1,21 +1,21 @@
 <template>
-  <v-col cols="12" lg="6" class="pb-1" v-if="textInputType === 'free-text'">
+  <v-col cols="12" lg="6" class="zero-padding" v-if="textInputType === 'free-text'">
     <div>
       <textarea
         :id="id"
         :placeholder="placeholder"
         type="text"
-        class="free-text input-style"
+        class="free-text input-style mb-3"
       />
     </div>
   </v-col>
-  <v-col cols="12" lg="6" class="pb-1" v-else>
+  <v-col cols="12" lg="6" class="zero-padding" v-else>
     <div>
       <input
         type="text"
         :id="id"
         :placeholder="placeholder"
-        class="input-style"
+        class="input-style mb-3"
       />
     </div>
   </v-col>
@@ -34,7 +34,7 @@ export default {
 
 <style lang="stylus" scoped>
 div
-  width 92%
+  width 95%
   .input-style
     width 100%
     border 1.5px solid #ccc

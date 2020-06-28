@@ -1,0 +1,53 @@
+<template>
+  <div class="stepper-indicator-container">
+    <div class="indicator-wrapper">
+      <ul>
+        <li>
+          <IndicatorList number="1" title="Delivery" />
+        </li>
+        <li>
+          <IndicatorList number="2" title="Payment" />
+        </li>
+        <li>
+          <IndicatorList number="3" title="Finish" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import IndicatorList from '../atoms/IndicatorList'
+
+export default {
+  name: 'StepperIndicator',
+  components: {
+    IndicatorList
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.stepper-indicator-container
+  height 70px
+  width 100%
+  position absolute
+  top 16px
+  left 0
+  .indicator-wrapper
+    background-color #FFFAE6
+    border-radius 50px
+    width 40%
+    height 100%
+    margin 0 auto
+    padding 10px
+    ul
+      position relative
+      top 25%
+      padding 0
+      width 100%
+      list-style none
+      text-align center
+      li
+        display inline-block
+</style>

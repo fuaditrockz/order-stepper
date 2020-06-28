@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <Stepper previousPage="cart"/>
+      <Stepper />
     </v-main>
   </v-app>
 </template>

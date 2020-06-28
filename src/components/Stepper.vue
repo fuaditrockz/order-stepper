@@ -1,8 +1,7 @@
 <template>
   <v-container>
     <v-row class="header">
-      <v-icon>email</v-icon>
-      <h4>Back to {{ previousPage }}</h4>
+      <BackButton content="cart"/>
     </v-row>
     <v-row class="content">
       <v-col cols="8" class="content-container">
@@ -22,14 +21,13 @@
 
 <script>
 import Title from './sub-components/Title'
+import BackButton from './sub-components/BackButton'
 
 export default {
   name: 'Stepper',
   components: {
-    Title
-  },
-  props: {
-    previousPage: String
+    Title,
+    BackButton
   }
 }
 </script>
@@ -42,9 +40,9 @@ export default {
   -webkit-box-shadow: 2px 10px 40px 0.3px rgba(255, 138, 0, 0.3)
   box-shadow: 2px 10px 40px 0.3px rgba(255, 138, 0, 0.3)
 .header
-  padding 10px 40px
+  padding 30px 40px 0px
 .content
-  padding 10px 40px
+  padding 10px 40px 0px
 .content-container
   .content-header
     justify-content space-between

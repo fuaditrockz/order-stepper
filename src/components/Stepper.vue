@@ -5,7 +5,7 @@
     </v-row>
     <v-row class="content">
       <v-col cols="8" class="content-container">
-        <v-row class="content-header">
+        <v-row class="content-header spacing-between">
           <Title size="big" title="Delivery Details" />
           <div>
             <v-checkbox :label="`Send as dropshipper`" />
@@ -24,7 +24,30 @@
         </v-row>
       </v-col>
       <v-col cols="4" class="summary-container">
+        <v-col>
+          <Title title="Summary" />
+          <p>10 items purchased</p>
+          <div class="push-content">
 
+          </div>
+          <v-col>
+            <v-row class="spacing-between">
+              <p>Cost of goods</p>
+              <h4>500,000</h4>
+            </v-row>
+            <v-row class="spacing-between">
+              <p>Dropshipping fee</p>
+              <h4>5,900</h4>
+            </v-row>
+            <v-row class="spacing-between mb-5">
+              <Title title="Total" />
+              <Title title="505,900" />
+            </v-row>
+            <v-row class="centerized-content">
+              <SubmitButton title="Continue to Payment" />
+            </v-row>
+          </v-col>
+        </v-col>
       </v-col>
     </v-row>
   </v-container>
@@ -34,13 +57,15 @@
 import Title from './sub-components/Title'
 import BackButton from './sub-components/BackButton'
 import TextInput from './sub-components/TextInput'
+import SubmitButton from './sub-components/SubmitButton'
 
 export default {
   name: 'Stepper',
   components: {
     Title,
     BackButton,
-    TextInput
+    TextInput,
+    SubmitButton
   }
 }
 </script>
@@ -58,7 +83,9 @@ export default {
   padding 10px 40px 0px
 .content-container
   .content-header
-    justify-content space-between
+    padding-right 60px
 .summary-container
-  background-color #f44531
+  border-left 1px solid #FF8A00
+.push-content
+  height 200px
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div>
     <div v-if="size === 'big'" class="big-title">
-      <h1>{{ title }}</h1>
+      <h1 class="primary-color">{{ title }}</h1>
       <div class="line" />
     </div>
     <div v-else>
-      <h4>Hello World</h4>
+      <h2 class="primary-color">{{ title }}</h2>
     </div>
   </div>
 </template>
@@ -21,8 +21,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-h1
-  color #FF8A00
 .line
   height 8px
   width 110%

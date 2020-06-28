@@ -40,7 +40,7 @@ div
   width 92%
   .input-style
     width 100%
-    border 2px solid #ccc
+    border 1.5px solid #ccc
     padding 15px 15px
   .free-text
     height 150px

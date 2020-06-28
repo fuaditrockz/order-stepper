@@ -29,7 +29,15 @@ export default {
 body
   background-color #FFFAE6
   padding 20
+p
+  color #535c68
 .v-main__wrap
   background-color #FFFAE6
   padding-top 20px
+.primary-bg-color
+  background-color #FF8A00
+.primary-color
+  color #FF8A00
+.spacing-between
+  justify-content space-between
 </style>

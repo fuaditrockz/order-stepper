@@ -11,6 +11,12 @@
             <v-checkbox :label="`Send as dropshipper`" />
           </div>
         </v-row>
+        <v-row>
+          <TextInput placeholder="Email" />
+          <TextInput placeholder="Dropshipper name" />
+          <TextInput placeholder="Phone Number" />
+          <TextInput placeholder="Dropshipper phone number" />
+        </v-row>
       </v-col>
       <v-col cols="4" class="summary-container">
 
@@ -22,12 +28,14 @@
 <script>
 import Title from './sub-components/Title'
 import BackButton from './sub-components/BackButton'
+import TextInput from './sub-components/TextInput'
 
 export default {
   name: 'Stepper',
   components: {
     Title,
-    BackButton
+    BackButton,
+    TextInput
   }
 }
 </script>

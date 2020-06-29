@@ -16,7 +16,13 @@ const state = {
 }
 
 const getters = {
-
+  total_goods_price: state => {
+    let amount = 0
+    state.purchases_item.forEach(item => {
+      amount += item.price
+    })
+    return amount
+  }
 }
 
 const actions = {

@@ -10,7 +10,7 @@
     <v-col>
       <div class="spacing-between">
         <p>Cost of goods</p>
-        <h4>500,000</h4>
+        <h4>{{ totalGoodsPrice }}</h4>
       </div>
       <div class="spacing-between">
         <p>Dropshipping fee</p>
@@ -36,6 +36,9 @@ export default {
   components: {
     Title,
     SubmitButton
+  },
+  props: {
+    totalGoodsPrice: String
   }
 }
 </script>

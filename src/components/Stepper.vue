@@ -4,12 +4,13 @@
     <StepperHeader previousPage="cart" :isBack="true" />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="deliveryDetails"/>
-      <Summary />
+      <Summary :totalGoodsPrice="formattedNumber(total_goods_price)" />
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import DeliveryDetails from './organisms/DeliveryDetails'
 import Summary from './organisms/Summary'
 import StepperHeader from './molecules/StepperHeader'
@@ -23,6 +24,14 @@ export default {
     StepperHeader,
     StepperIndicator,
     RightContainerTemplate
+  },
+  computed: {
+    ...mapGetters(['total_goods_price'])
+  },
+  methods: {
+    formattedNumber(number) {
+      return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+    }
   },
   data () {
     return {

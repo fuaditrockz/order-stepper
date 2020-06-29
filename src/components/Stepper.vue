@@ -7,6 +7,7 @@
       <Summary
         :totalGoodsPrice="formattedNumber(GET_TOTAL_PRICE)"
         :isDropshipper="isDropshipper"
+        :totalFixPrice="formattedNumber(totalPayment())"
       />
     </v-row>
   </v-container>
@@ -30,6 +31,7 @@ export default {
   },
   computed: {
     ...mapState({
+      dropshippingFee: state => state.summary.dropshipping.dropshipping_fee,
       isDropshipper: state => state.summary.dropshipping.is_dropshipper
     }),
     ...mapGetters(['GET_TOTAL_PRICE'])
@@ -37,6 +39,12 @@ export default {
   methods: {
     formattedNumber(number) {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+    },
+    totalPayment() {
+      if (this.isDropshipper) {
+        return this.GET_TOTAL_PRICE + this.dropshippingFee 
+      }
+      return this.GET_TOTAL_PRICE
     }
   },
   data () {

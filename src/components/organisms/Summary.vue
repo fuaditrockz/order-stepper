@@ -18,7 +18,7 @@
       </div>
       <div class="spacing-between mb-5">
         <Title title="Total" />
-        <Title title="505,900" />
+        <Title :title="totalFixPrice" />
       </div>
       <div class="centerized-content">
         <SubmitButton title="Continue to Payment" />
@@ -40,7 +40,8 @@ export default {
   },
   props: {
     totalGoodsPrice: String,
-    isDropshipper: Boolean
+    isDropshipper: Boolean,
+    totalFixPrice: String
   },
   computed: {
     ...mapState({

@@ -3,14 +3,25 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Delivery Details" />
       <div>
-        <CheckBox title="Send as dropshipper" :isChecked="isDropshipper()" />
+        <CheckBox
+          title="Send as dropshipper"
+          :isChecked="isDropshipper()"
+        />
       </div>
     </v-row>
     <v-row>
       <TextInput placeholder="Email" id="email" />
-      <TextInput placeholder="Dropshipper name" id="drophsipper-name" :isDisabled="true" />
+      <TextInput
+        placeholder="Dropshipper name"
+        id="drophsipper-name"
+        :isDisabled="isDropshipper()"
+      />
       <TextInput placeholder="Phone Number" id="phone-number" />
-      <TextInput placeholder="Dropshipper phone number" id="dropshipper-phone-number" />
+      <TextInput
+        placeholder="Dropshipper phone number"
+        id="dropshipper-phone-number"
+        :isDisabled="isDropshipper()"
+      />
       <TextInput
         placeholder="Address"
         id="address"
@@ -37,9 +48,10 @@ export default {
     ...mapGetters(['get_is_dropshipper'])
   },
   methods: {
-    isDropshipper() {
+    isDropshipper () {
       const dataResult = this.get_is_dropshipper
       console.log('IS_DROPSHIPPER', dataResult)
+      console.log('IS_DROPSHIPPER_INPUT_DISABLED', dataResult)
       return dataResult
     }
   }

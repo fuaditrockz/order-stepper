@@ -1,5 +1,9 @@
 <template>
-  <v-checkbox v-model="isChecked" color="success">
+  <v-checkbox
+    v-model="isChecked"
+    color="success"
+    @change="clicked"
+  >
     <template v-slot:label>
       <h4>{{ title }}</h4>
     </template>
@@ -12,6 +16,11 @@ export default {
   props: {
     title: String,
     isChecked: Boolean
+  },
+  methods: {
+    clicked() {
+      this.$emit('clicked')
+    }
   }
 }
 </script>

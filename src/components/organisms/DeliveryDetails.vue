@@ -3,10 +3,21 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Delivery Details" />
       <div>
-        <CheckBox
+        <v-checkbox
+          v-model="isDropshipper"
+          :value="isDropshipper"
+          color="success"
+          @change="clickDropshipperCheckBox()"
+        >
+          <template v-slot:label>
+            <h4>Send as dropshipper</h4>
+          </template>
+        </v-checkbox>
+        <!-- <CheckBox
           title="Send as dropshipper"
-          :isChecked="isDropshipper()"
-        />
+          :isChecked="get_is_dropshipper()"
+          @clicked="setAsDropshipper"
+        /> -->
       </div>
     </v-row>
     <v-row>
@@ -14,13 +25,13 @@
       <TextInput
         placeholder="Dropshipper name"
         id="drophsipper-name"
-        :isDisabled="isDropshipper()"
+        :isDisabled="!isDropshipper"
       />
       <TextInput placeholder="Phone Number" id="phone-number" />
       <TextInput
         placeholder="Dropshipper phone number"
         id="dropshipper-phone-number"
-        :isDisabled="isDropshipper()"
+        :isDisabled="!isDropshipper"
       />
       <TextInput
         placeholder="Address"
@@ -32,27 +43,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import Title from '../atoms/Title'
 import TextInput from '../atoms/TextInput'
-import CheckBox from '../atoms/CheckBox'
+/* import CheckBox from '../atoms/CheckBox' */
 
 export default {
   name: 'DeliveryDetails',
   components: {
     Title,
     TextInput,
-    CheckBox
+    /* CheckBox */
   },
-  computed: {
-    ...mapGetters(['get_is_dropshipper'])
+  data() {
+    return {
+      isDropshipper: true
+    }
   },
   methods: {
-    isDropshipper () {
-      const dataResult = this.get_is_dropshipper
-      console.log('IS_DROPSHIPPER', dataResult)
-      console.log('IS_DROPSHIPPER_INPUT_DISABLED', dataResult)
-      return dataResult
+    ...mapMutations(['SETUP_DROPSHIPPER']),
+    clickDropshipperCheckBox() {
+      this.SETUP_DROPSHIPPER(this.isDropshipper)
+      console.log(this.isDropshipper)
     }
   }
 }

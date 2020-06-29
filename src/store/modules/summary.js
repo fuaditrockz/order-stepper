@@ -26,17 +26,14 @@ const getters = {
       amount += item.price
     })
     return amount
-  },
-  get_is_dropshipper: state => {
-    return state.dropshipping.is_dropshipping
   }
 }
 
 const actions = {}
 
 const mutations = {
-  set_as_dropshipper: state => {
-    state.dropshipping.is_dropshipping = true
+  SETUP_DROPSHIPPER: (state, payload) => {
+    state.dropshipping.is_dropshipping = payload
   }
 }
 

@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     ...mapState({
-      dropshippingFee: state => state.summary.dropshipping.dropshipping_fee
+      dropshippingFee: state => state.extras.dropshipping_fee
     })
   },
   methods: {

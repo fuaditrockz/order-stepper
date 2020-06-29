@@ -1,5 +1,5 @@
 const state = {
-  purchases_item: [
+  purchase_items: [
     {
       name: "Ps3 Slim Sony + Hdd 500gb + 2 Stick Warlles + Full Games",
       price: 214800
@@ -13,16 +13,24 @@ const state = {
       price: 143920
     }
   ],
-  dropshipping: {
-    is_dropshipper: false,
-    dropshipping_fee: 5900 
-  }
+  delivery_details: {
+    email: null,
+    phone_number: null,
+    address: null,
+    dropshipper: {
+      is_dropshipper: false,
+      name: null,
+      phone_number: null
+    }
+  },
+  shipment_vendor: null,
+  payment_method: null
 }
 
 const getters = {
-  GET_TOTAL_PRICE: state => {
+  GET_TOTAL_PURCHASE: state => {
     let amount = 0
-    state.purchases_item.forEach(item => {
+    state.purchase_items.forEach(item => {
       amount += item.price
     })
     return amount
@@ -33,7 +41,7 @@ const actions = {}
 
 const mutations = {
   SETUP_DROPSHIPPER: (state, payload) => {
-    state.dropshipping.is_dropshipper = payload
+    state.delivery_details.dropshipper.is_dropshipper= payload
   }
 }
 

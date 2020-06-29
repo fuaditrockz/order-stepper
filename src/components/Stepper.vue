@@ -5,7 +5,7 @@
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="deliveryDetails"/>
       <Summary
-        :totalGoodsPrice="formattedNumber(GET_TOTAL_PRICE)"
+        :totalGoodsPrice="formattedNumber(GET_TOTAL_PURCHASE)"
         :isDropshipper="isDropshipper"
         :totalFixPrice="formattedNumber(totalPayment())"
       />
@@ -31,10 +31,10 @@ export default {
   },
   computed: {
     ...mapState({
-      dropshippingFee: state => state.summary.dropshipping.dropshipping_fee,
-      isDropshipper: state => state.summary.dropshipping.is_dropshipper
+      dropshippingFee: state => state.extras.dropshipping_fee,
+      isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper
     }),
-    ...mapGetters(['GET_TOTAL_PRICE'])
+    ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
   methods: {
     formattedNumber(number) {
@@ -42,9 +42,9 @@ export default {
     },
     totalPayment() {
       if (this.isDropshipper) {
-        return this.GET_TOTAL_PRICE + this.dropshippingFee 
+        return this.GET_TOTAL_PURCHASE + this.dropshippingFee 
       }
-      return this.GET_TOTAL_PRICE
+      return this.GET_TOTAL_PURCHASE
     }
   },
   data () {

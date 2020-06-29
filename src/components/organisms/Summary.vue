@@ -14,7 +14,7 @@
       </div>
       <div class="spacing-between" v-if="isDropshipper">
         <p>Dropshipping fee</p>
-        <h4>5,900</h4>
+        <h4>{{ formattedNumber(dropshippingFee) }}</h4>
       </div>
       <div class="spacing-between mb-5">
         <Title title="Total" />
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Title from '../atoms/Title'
 import SubmitButton from '../atoms/SubmitButton'
 
@@ -40,6 +41,16 @@ export default {
   props: {
     totalGoodsPrice: String,
     isDropshipper: Boolean
+  },
+  computed: {
+    ...mapState({
+      dropshippingFee: state => state.summary.dropshipping.dropshipping_fee
+    })
+  },
+  methods: {
+    formattedNumber(number) {
+      return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+    }
   }
 }
 </script>

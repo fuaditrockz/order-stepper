@@ -4,7 +4,7 @@
     <StepperHeader previousPage="cart" :isBack="true" />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="deliveryDetails"/>
-      <Summary :totalGoodsPrice="formattedNumber(total_goods_price)" />
+      <Summary :totalGoodsPrice="formattedNumber(get_total_goods_price)" />
     </v-row>
   </v-container>
 </template>
@@ -26,7 +26,7 @@ export default {
     RightContainerTemplate
   },
   computed: {
-    ...mapGetters(['total_goods_price'])
+    ...mapGetters(['get_total_goods_price'])
   },
   methods: {
     formattedNumber(number) {

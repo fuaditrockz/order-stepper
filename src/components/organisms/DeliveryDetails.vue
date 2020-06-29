@@ -3,7 +3,7 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Delivery Details" />
       <div>
-        <CheckBox title="Send as dropshipper" />
+        <CheckBox title="Send as dropshipper" :isChecked="isDropshipper()" />
       </div>
     </v-row>
     <v-row>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Title from '../atoms/Title'
 import TextInput from '../atoms/TextInput'
 import CheckBox from '../atoms/CheckBox'
@@ -31,10 +32,16 @@ export default {
     Title,
     TextInput,
     CheckBox
+  },
+  computed: {
+    ...mapGetters(['get_is_dropshipper'])
+  },
+  methods: {
+    isDropshipper() {
+      const dataResult = this.get_is_dropshipper
+      console.log('IS_DROPSHIPPER', dataResult)
+      return dataResult
+    }
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

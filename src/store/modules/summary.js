@@ -12,25 +12,32 @@ const state = {
       name: "PEWIE TR-560-12 SPEAKER MEETING PORTABLE 12 INCH MIC WIRELESS - BLUETOOTH TR560",
       price: 143920
     }
-  ]
+  ],
+  dropshipping: {
+    is_dropshipping: false,
+    dropshipping_fee: 5900 
+  }
 }
 
 const getters = {
-  total_goods_price: state => {
+  get_total_goods_price: state => {
     let amount = 0
     state.purchases_item.forEach(item => {
       amount += item.price
     })
     return amount
+  },
+  get_is_dropshipper: state => {
+    return state.dropshipping.is_dropshipping
   }
 }
 
-const actions = {
-
-}
+const actions = {}
 
 const mutations = {
-
+  set_as_dropshipper: state => {
+    state.dropshipping.is_dropshipping = true
+  }
 }
 
 export default {

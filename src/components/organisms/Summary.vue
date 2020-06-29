@@ -12,7 +12,7 @@
         <p>Cost of goods</p>
         <h4>{{ totalGoodsPrice }}</h4>
       </div>
-      <div class="spacing-between">
+      <div class="spacing-between" v-if="isDropshipper">
         <p>Dropshipping fee</p>
         <h4>5,900</h4>
       </div>
@@ -38,7 +38,8 @@ export default {
     SubmitButton
   },
   props: {
-    totalGoodsPrice: String
+    totalGoodsPrice: String,
+    isDropshipper: Boolean
   }
 }
 </script>

@@ -4,13 +4,16 @@
     <StepperHeader previousPage="cart" :isBack="true" />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="deliveryDetails"/>
-      <Summary :totalGoodsPrice="formattedNumber(get_total_goods_price)" />
+      <Summary
+        :totalGoodsPrice="formattedNumber(GET_TOTAL_PRICE)"
+        :isDropshipper="isDropshipper"
+      />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import DeliveryDetails from './organisms/DeliveryDetails'
 import Summary from './organisms/Summary'
 import StepperHeader from './molecules/StepperHeader'
@@ -26,7 +29,10 @@ export default {
     RightContainerTemplate
   },
   computed: {
-    ...mapGetters(['get_total_goods_price'])
+    ...mapState({
+      isDropshipper: state => state.summary.dropshipping.is_dropshipper
+    }),
+    ...mapGetters(['GET_TOTAL_PRICE'])
   },
   methods: {
     formattedNumber(number) {

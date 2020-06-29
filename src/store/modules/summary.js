@@ -14,13 +14,13 @@ const state = {
     }
   ],
   dropshipping: {
-    is_dropshipping: false,
+    is_dropshipper: false,
     dropshipping_fee: 5900 
   }
 }
 
 const getters = {
-  get_total_goods_price: state => {
+  GET_TOTAL_PRICE: state => {
     let amount = 0
     state.purchases_item.forEach(item => {
       amount += item.price
@@ -33,7 +33,7 @@ const actions = {}
 
 const mutations = {
   SETUP_DROPSHIPPER: (state, payload) => {
-    state.dropshipping.is_dropshipping = payload
+    state.dropshipping.is_dropshipper = payload
   }
 }
 

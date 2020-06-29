@@ -13,11 +13,6 @@
             <h4>Send as dropshipper</h4>
           </template>
         </v-checkbox>
-        <!-- <CheckBox
-          title="Send as dropshipper"
-          :isChecked="get_is_dropshipper()"
-          @clicked="setAsDropshipper"
-        /> -->
       </div>
     </v-row>
     <v-row>
@@ -46,18 +41,16 @@
 import { mapMutations } from 'vuex'
 import Title from '../atoms/Title'
 import TextInput from '../atoms/TextInput'
-/* import CheckBox from '../atoms/CheckBox' */
 
 export default {
   name: 'DeliveryDetails',
   components: {
     Title,
-    TextInput,
-    /* CheckBox */
+    TextInput
   },
   data() {
     return {
-      isDropshipper: true
+      isDropshipper: null
     }
   },
   methods: {

@@ -62,5 +62,5 @@ a
   .shipment-item-selected
     border-color #2ed573
     h5
-     color #2ed573 
+     color #000 
 </style>

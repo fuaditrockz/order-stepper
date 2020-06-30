@@ -37,7 +37,7 @@
       </div>
       <div class="centerized-content">
         <SubmitButton
-          title="Continue to Payment"
+          :title="submitButtonWording()"
           :submitFunc="submitDeliveryDetails"
         />
       </div>
@@ -63,7 +63,8 @@ export default {
       isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper,
       dropshippingFee: state => state.extras.dropshipping_fee,
       selectedShipmentVendor: state => state.orders.shipment_vendor,
-      selectedPaymentMethod: state => state.orders.payment_method
+      selectedPaymentMethod: state => state.orders.payment_method,
+      stepperPosition: state => state.stepper.stepper_position
     }),
     ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
@@ -81,6 +82,13 @@ export default {
     },
     submitDeliveryDetails() {
       this.SUBMIT_DELIVERY_DETAILS()
+    },
+    submitButtonWording() {
+      if (this.stepperPosition === 0) {
+        return 'Continue to Payment'
+      }
+
+      return this.selectedPaymentMethod ? 'Pay with ' + this.selectedPaymentMethod.name : 'Select payment method'
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-row class="spacing-between pr-5">
+    <v-row class="spacing-between pr-5 mb-3">
       <Title size="big" title="Shipment" />
     </v-row>
     <FormShipment class="mb-10" />
-    <v-row class="spacing-between pr-5">
+    <v-row class="spacing-between pr-5 mb-3">
       <Title size="big" title="Payment" />
     </v-row>
     <FormPayment class="mb-10" />

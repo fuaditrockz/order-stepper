@@ -3,13 +3,27 @@
     <div class="indicator-wrapper">
       <ul>
         <li>
-          <IndicatorList :number="1" title="Delivery" :isHaveIcon="true" :isActive="true" />
+          <IndicatorList
+            :number="1"
+            title="Delivery"
+            :isHaveIcon="true"
+            :isActive="true"
+          />
         </li>
         <li>
-          <IndicatorList :number="2" title="Payment" :isHaveIcon="true" />
+          <IndicatorList
+            :number="2"
+            title="Payment"
+            :isHaveIcon="true"
+            :isActive="stepperPosition === 1 || stepperPosition === 2"
+          />
         </li>
         <li>
-          <IndicatorList :number="3" title="Finish" />
+          <IndicatorList
+            :number="3"
+            title="Finish"
+            :isActive="stepperPosition === 2"
+          />
         </li>
       </ul>
     </div>
@@ -17,12 +31,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import IndicatorList from '../atoms/IndicatorList'
 
 export default {
   name: 'StepperIndicator',
   components: {
     IndicatorList
+  },
+  computed: {
+    ...mapState({
+      stepperPosition: state => state.stepper.stepper_position
+    }),
   }
 }
 </script>

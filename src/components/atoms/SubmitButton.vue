@@ -1,5 +1,5 @@
 <template>
-  <button class="primary-bg-color">
+  <button class="primary-bg-color" @click="submit">
     {{ title }}
   </button>
 </template>
@@ -8,7 +8,13 @@
 export default {
   name: 'SubmitButton',
   props: {
-    title: String
+    title: String,
+    submitFunc: Function
+  },
+  methods: {
+    submit() {
+      this.submitFunc()
+    }
   }
 }
 </script>

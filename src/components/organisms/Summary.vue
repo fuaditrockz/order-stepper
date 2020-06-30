@@ -2,7 +2,7 @@
   <v-col sm="12" lg="4" class="summary-container mt-5">
     <v-col>
       <Title title="Summary" />
-      <p>10 items purchased</p>
+      <p>{{ purchaseItems.length }} items purchased</p>
     </v-col>
     <div class="extras-container pl-3">
       <ExtrasSelectedList
@@ -60,6 +60,7 @@ export default {
   },
   computed: {
     ...mapState({
+      purchaseItems: state => state.orders.purchase_items,
       isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper,
       dropshippingFee: state => state.extras.dropshipping_fee,
       selectedShipmentVendor: state => state.orders.shipment_vendor,

@@ -57,7 +57,7 @@ export default {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     },
     submitDeliveryDetails() {
-      this.SUBMIT_DELIVERY_DETAILS('Hello')
+      this.SUBMIT_DELIVERY_DETAILS()
     }
   }
 }

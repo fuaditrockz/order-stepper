@@ -65,10 +65,6 @@ const mutations = {
         console.log('Error, dont have any payload')
         break;
     }
-  },
-  SUBMIT_DELIVERY_DETAILS: (state, payload) => {
-    console.log('STATE', state)
-    console.log('PAYLOAD', payload)
   }
 }
 

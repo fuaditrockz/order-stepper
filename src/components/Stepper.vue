@@ -44,6 +44,7 @@ export default {
         DeliveryDetails,
         ShipmentAndPayment
       ]
+      console.log(position)
       return stepperPage[position]
     },
     formattedNumber(number) {
@@ -54,15 +55,6 @@ export default {
         return this.GET_TOTAL_PURCHASE + this.dropshippingFee 
       }
       return this.GET_TOTAL_PURCHASE
-    }
-  },
-  data () {
-    const stepperPage = [
-      DeliveryDetails,
-      ShipmentAndPayment
-    ]
-    return {
-      deliveryDetails: stepperPage[this.stepperPosition]
     }
   }
 }

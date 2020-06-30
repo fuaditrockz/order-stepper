@@ -12,8 +12,16 @@
 </template>
 
 <script>
+import Title from '../atoms/Title'
+
 export default {
-  name: 'ShipmentAndPayment'
+  name: 'ShipmentAndPayment',
+  components: {
+    Title
+  },
+  data() {
+    return {}
+  }
 }
 </script>
 

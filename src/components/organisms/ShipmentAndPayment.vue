@@ -3,11 +3,11 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Shipment" />
     </v-row>
-    <FormShipment />
+    <FormShipment class="mb-10" />
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Payment" />
     </v-row>
-    <FormPayment />
+    <FormPayment class="mb-10" />
   </div>
 </template>
 

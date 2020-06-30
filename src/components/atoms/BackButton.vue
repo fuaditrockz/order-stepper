@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="">
+    <a href="#" @click="clickBack()">
       <v-icon color="#535c68" size="20px">arrow_back</v-icon>
       <h4>Back to {{ content }}</h4>
     </a>
@@ -11,7 +11,13 @@
 export default {
   name: 'BackButton',
   props: {
-    content: String
+    content: String,
+    click: Function
+  },
+  methods: {
+    clickBack() {
+      this.click()
+    }
   }
 }
 </script>

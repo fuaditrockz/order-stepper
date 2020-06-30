@@ -2,7 +2,7 @@
   <div>
     <div v-if="size === 'big'" class="big-title">
       <h1 class="primary-color">{{ title }}</h1>
-      <div class="line" />
+      <div class="line" :style="{width: !lineWidth ? '120%' : lineWidth}" />
     </div>
     <div v-else>
       <h2 class="primary-color">{{ title }}</h2>
@@ -15,7 +15,8 @@ export default {
   name: 'Title',
   props: {
     size: String,
-    title: String
+    title: String,
+    lineWidth: String
   }
 }
 </script>
@@ -23,7 +24,6 @@ export default {
 <style lang="stylus" scoped>
 .line
   height 8px
-  width 110%
   background-color #eee
   position relative
   bottom 17px

@@ -41,7 +41,34 @@ const actions = {}
 
 const mutations = {
   SETUP_DROPSHIPPER: (state, payload) => {
-    state.delivery_details.dropshipper.is_dropshipper= payload
+    state.delivery_details.dropshipper.is_dropshipper = payload
+  },
+  UPDATE_DELIVERY_DETAILS: (state, payload) => {
+    const deliveryDetails = state.delivery_details
+    switch (payload.id) {
+      case 'email':
+        deliveryDetails.email = payload.value
+        break;
+      case 'phone_number':
+        deliveryDetails.phone_number = payload.value
+        break;
+      case 'address':
+        deliveryDetails.address = payload.value
+        break;
+      case 'dropshipper_name':
+        deliveryDetails.dropshipper.name = payload.value
+        break;
+      case 'dropshipper_phone_number':
+        deliveryDetails.dropshipper.phone_number = payload.value
+        break;
+      default:
+        console.log('Error, dont have any payload')
+        break;
+    }
+  },
+  SUBMIT_DELIVERY_DETAILS: (state, payload) => {
+    console.log('STATE', state)
+    console.log('PAYLOAD', payload)
   }
 }
 

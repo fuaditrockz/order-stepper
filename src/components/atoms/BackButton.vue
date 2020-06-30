@@ -18,9 +18,10 @@ export default {
 
 <style lang="stylus" scoped>
 a
+  float left
   display inline-flex
   justify-content space-between
-  width 137px
+  width 158px
   text-decoration none
   padding 5px 12px 5px 5px
   border-radius 5px

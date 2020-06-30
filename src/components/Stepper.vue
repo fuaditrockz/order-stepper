@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <StepperIndicator />
-    <StepperHeader previousPage="cart" :isBack="stepperPosition < 2" />
+    <StepperHeader
+      :previousPage="stepperPosition === 0 ? 'cart' : 'delivery'"
+      :isBack="stepperPosition < 2"
+    />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="getPage(stepperPosition)"/>
       <Summary

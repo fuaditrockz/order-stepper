@@ -65,6 +65,9 @@ const mutations = {
         console.log('Error, dont have any payload')
         break;
     }
+  },
+  UPDATE_SHIPMENT_VENDOR: (state, payload) => {
+    state.shipment_vendor = payload
   }
 }
 

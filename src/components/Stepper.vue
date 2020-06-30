@@ -16,6 +16,7 @@
 import { mapState } from 'vuex'
 import DeliveryDetails from './organisms/DeliveryDetails'
 import ShipmentAndPayment from './organisms/ShipmentAndPayment'
+import FinishOrder from './organisms/FinishOrder'
 import Summary from './organisms/Summary'
 import StepperHeader from './molecules/StepperHeader'
 import StepperIndicator from './molecules/StepperIndicator'
@@ -38,7 +39,8 @@ export default {
     getPage(position) {
       const stepperPage = [
         DeliveryDetails,
-        ShipmentAndPayment
+        ShipmentAndPayment,
+        FinishOrder
       ]
       console.log('PAGE_POSITION ', position)
       return stepperPage[position]

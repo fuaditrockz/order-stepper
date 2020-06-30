@@ -1,5 +1,5 @@
 <template>
-  <v-col sm="12" lg="4" class="summary-container">
+  <v-col sm="12" lg="4" class="summary-container mt-5">
     <v-col>
       <Title title="Summary" />
       <p>10 items purchased</p>

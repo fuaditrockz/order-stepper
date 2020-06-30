@@ -1,6 +1,6 @@
 <template>
-  <v-row class="header" v-if="isBack">
-    <BackButton :content="previousPage" :click="clickBack"/>
+  <v-row class="header">
+    <BackButton :content="previousPage" :click="clickBack" v-if="isBack"/>
   </v-row>
 </template>
 

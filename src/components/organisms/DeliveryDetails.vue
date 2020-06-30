@@ -15,42 +15,25 @@
         </v-checkbox>
       </div>
     </v-row>
-    <v-row>
-      <TextInput placeholder="Email" id="email" />
-      <TextInput
-        placeholder="Dropshipper name"
-        id="drophsipper-name"
-        :isDisabled="!isDropshipper"
-      />
-      <TextInput placeholder="Phone Number" id="phone-number" />
-      <TextInput
-        placeholder="Dropshipper phone number"
-        id="dropshipper-phone-number"
-        :isDisabled="!isDropshipper"
-      />
-      <TextInput
-        placeholder="Address"
-        id="address"
-        textInputType="free-text"
-      />
-    </v-row>
+    <FormDeliveryDetails />
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import Title from '../atoms/Title'
-import TextInput from '../atoms/TextInput'
+import FormDeliveryDetails from '../molecules/FormDeliveryDetails'
 
 export default {
   name: 'DeliveryDetails',
   components: {
     Title,
-    TextInput
+    FormDeliveryDetails
   },
   data() {
     return {
-      isDropshipper: null
+      isDropshipper: null,
+      emailInput: ''
     }
   },
   methods: {

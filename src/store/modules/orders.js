@@ -68,6 +68,9 @@ const mutations = {
   },
   UPDATE_SHIPMENT_VENDOR: (state, payload) => {
     state.shipment_vendor = payload
+  },
+  UPDATE_PAYMENT_VENDOR: (state, payload) => {
+    state.payment_method = payload
   }
 }
 

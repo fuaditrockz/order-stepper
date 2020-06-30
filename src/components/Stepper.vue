@@ -7,17 +7,13 @@
     />
     <v-row class="pa-2">
       <RightContainerTemplate :child_component="getPage(stepperPosition)"/>
-      <Summary
-        :totalGoodsPrice="formattedNumber(GET_TOTAL_PURCHASE)"
-        :isDropshipper="isDropshipper"
-        :totalFixPrice="formattedNumber(totalPayment())"
-      />
+      <Summary />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import DeliveryDetails from './organisms/DeliveryDetails'
 import ShipmentAndPayment from './organisms/ShipmentAndPayment'
 import Summary from './organisms/Summary'
@@ -35,11 +31,8 @@ export default {
   },
   computed: {
     ...mapState({
-      stepperPosition: state => state.stepper.stepper_position,
-      dropshippingFee: state => state.extras.dropshipping_fee,
-      isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper
-    }),
-    ...mapGetters(['GET_TOTAL_PURCHASE'])
+      stepperPosition: state => state.stepper.stepper_position
+    })
   },
   methods: {
     getPage(position) {
@@ -47,17 +40,8 @@ export default {
         DeliveryDetails,
         ShipmentAndPayment
       ]
-      console.log(position)
+      console.log('PAGE_POSITION ', position)
       return stepperPage[position]
-    },
-    formattedNumber(number) {
-      return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-    },
-    totalPayment() {
-      if (this.isDropshipper) {
-        return this.GET_TOTAL_PURCHASE + this.dropshippingFee 
-      }
-      return this.GET_TOTAL_PURCHASE
     }
   }
 }

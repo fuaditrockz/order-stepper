@@ -16,6 +16,21 @@ const state = {
       name: "Personal Counter",
       price: 29000
     }
+  ],
+  payment_methods: [
+    {
+      id: "ewallet",
+      name: "e-Wallet",
+      remaining_balance: 1500000
+    },
+    {
+      id: "banktransfer",
+      name: "Bank Transfer"
+    },
+    {
+      id: "virtualaccount",
+      name: "Virtual Account"
+    }
   ]
 }
 

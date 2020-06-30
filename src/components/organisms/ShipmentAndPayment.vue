@@ -7,19 +7,21 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Payment" />
     </v-row>
-    <!-- <FormDeliveryDetails /> -->
+    <FormPayment />
   </div>
 </template>
 
 <script>
 import Title from '../atoms/Title'
 import FormShipment from '../molecules/FormShipment'
+import FormPayment from '../molecules/FormPayment'
 
 export default {
   name: 'ShipmentAndPayment',
   components: {
     Title,
-    FormShipment
+    FormShipment,
+    FormPayment
   },
   data() {
     return {}

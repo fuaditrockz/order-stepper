@@ -3,7 +3,7 @@
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Shipment" />
     </v-row>
-    <!-- <FormDeliveryDetails /> -->
+    <FormShipment />
     <v-row class="spacing-between pr-5">
       <Title size="big" title="Payment" />
     </v-row>
@@ -13,11 +13,13 @@
 
 <script>
 import Title from '../atoms/Title'
+import FormShipment from '../molecules/FormShipment'
 
 export default {
   name: 'ShipmentAndPayment',
   components: {
-    Title
+    Title,
+    FormShipment
   },
   data() {
     return {}

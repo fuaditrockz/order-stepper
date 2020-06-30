@@ -21,14 +21,17 @@
         <Title :title="totalFixPrice" />
       </div>
       <div class="centerized-content">
-        <SubmitButton title="Continue to Payment" />
+        <SubmitButton
+          title="Continue to Payment"
+          :submitFunc="submitDeliveryDetails"
+        />
       </div>
     </v-col>
   </v-col>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import Title from '../atoms/Title'
 import SubmitButton from '../atoms/SubmitButton'
 
@@ -49,8 +52,12 @@ export default {
     })
   },
   methods: {
+    ...mapMutations(['SUBMIT_DELIVERY_DETAILS']),
     formattedNumber(number) {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+    },
+    submitDeliveryDetails() {
+      this.SUBMIT_DELIVERY_DETAILS('Hello')
     }
   }
 }

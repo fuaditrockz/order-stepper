@@ -3,7 +3,7 @@
     <StepperIndicator />
     <StepperHeader previousPage="cart" :isBack="true" />
     <v-row class="pa-2">
-      <RightContainerTemplate :child_component="deliveryDetails"/>
+      <RightContainerTemplate :child_component="getPage(stepperPosition)"/>
       <Summary
         :totalGoodsPrice="formattedNumber(GET_TOTAL_PURCHASE)"
         :isDropshipper="isDropshipper"
@@ -16,6 +16,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import DeliveryDetails from './organisms/DeliveryDetails'
+import ShipmentAndPayment from './organisms/ShipmentAndPayment'
 import Summary from './organisms/Summary'
 import StepperHeader from './molecules/StepperHeader'
 import StepperIndicator from './molecules/StepperIndicator'
@@ -31,12 +32,20 @@ export default {
   },
   computed: {
     ...mapState({
+      stepperPosition: state => state.stepper.stepper_position,
       dropshippingFee: state => state.extras.dropshipping_fee,
       isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper
     }),
     ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
   methods: {
+    getPage(position) {
+      const stepperPage = [
+        DeliveryDetails,
+        ShipmentAndPayment
+      ]
+      return stepperPage[position]
+    },
     formattedNumber(number) {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     },
@@ -48,8 +57,12 @@ export default {
     }
   },
   data () {
+    const stepperPage = [
+      DeliveryDetails,
+      ShipmentAndPayment
+    ]
     return {
-      deliveryDetails: DeliveryDetails
+      deliveryDetails: stepperPage[this.stepperPosition]
     }
   }
 }

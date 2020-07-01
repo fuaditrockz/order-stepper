@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <OptionCard
-      v-for="vendor in shipmentVendors"
+      v-for="vendor in _store_shipments"
       :key="vendor.id"
       :title="vendor.name"
       :price="formattedNumber(vendor.price)"
@@ -20,20 +20,25 @@ export default {
   components: {
     OptionCard
   },
+
   computed: {
     ...mapState({
-      shipmentVendors: state => state.extras.shipments,
-      selectedShipmentVendor: state => state.orders.shipment_vendor
+      _store_shipments: state => state.extras.shipments,
+      _store_shipment_vendor: state => state.orders.shipment_vendor
     })
   },
+
   methods: {
     ...mapMutations(['UPDATE_SHIPMENT_VENDOR']),
+
     selectShipment(payload) {
       this.UPDATE_SHIPMENT_VENDOR(payload)
     },
+
     checkIfSelected(payload) {
-      return payload === this.selectedShipmentVendor
+      return payload === this._store_shipment_vendor
     },
+    
     formattedNumber(number) {
       return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     },

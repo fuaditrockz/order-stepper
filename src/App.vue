@@ -13,10 +13,7 @@ export default {
   name: 'App',
   components: {
     Stepper
-  },
-  data: () => ({
-    //
-  }),
+  }
 };
 </script>
 

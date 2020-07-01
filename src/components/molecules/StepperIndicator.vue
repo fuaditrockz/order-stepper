@@ -15,14 +15,14 @@
             :number="2"
             title="Payment"
             :isHaveIcon="true"
-            :isActive="stepperPosition === 1 || stepperPosition === 2"
+            :isActive="_store_stepper_position === 1 || _store_stepper_position === 2"
           />
         </li>
         <li>
           <IndicatorList
             :number="3"
             title="Finish"
-            :isActive="stepperPosition === 2"
+            :isActive="_store_stepper_position === 2"
           />
         </li>
       </ul>
@@ -36,12 +36,14 @@ import IndicatorList from '../atoms/IndicatorList'
 
 export default {
   name: 'StepperIndicator',
+  
   components: {
     IndicatorList
   },
+
   computed: {
     ...mapState({
-      stepperPosition: state => state.stepper.stepper_position
+      _store_stepper_position: state => state.stepper.stepper_position
     }),
   }
 }

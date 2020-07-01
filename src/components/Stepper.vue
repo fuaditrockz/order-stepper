@@ -14,6 +14,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { loggers } from '../helpers'
 import DeliveryDetails from './organisms/DeliveryDetails'
 import ShipmentAndPayment from './organisms/ShipmentAndPayment'
 import FinishOrder from './organisms/FinishOrder'
@@ -42,7 +43,7 @@ export default {
         ShipmentAndPayment,
         FinishOrder
       ]
-      console.log('PAGE_POSITION ', position)
+      loggers.movePage(position + 1)
       return stepperPage[position]
     }
   }

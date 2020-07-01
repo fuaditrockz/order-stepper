@@ -2,38 +2,38 @@
   <v-col sm="12" lg="4" class="summary-container mt-5">
     <v-col>
       <Title title="Summary" />
-      <p>{{ purchaseItems.length }} items purchased</p>
+      <p>{{ _store_purchase_items.length }} items purchased</p>
     </v-col>
     <div class="extras-container pl-3">
       <ExtrasSelectedList
         title="Delivery Estimation"
-        :vendor="selectedShipmentVendor.name"
+        :vendor="_store_shipment_vendor.name"
         type="shipment"
-        v-if="selectedShipmentVendor"
+        v-if="_store_shipment_vendor"
       />
       <ExtrasSelectedList
         title="Payment method"
-        :vendor="selectedPaymentMethod.name"
+        :vendor="_store_payment_method.name"
         type="payment-method"
-        v-if="selectedPaymentMethod"
+        v-if="_store_payment_method"
       />
     </div>
     <v-col>
       <div class="spacing-between">
         <p>Cost of goods</p>
-        <h4>{{ formattedNumber(GET_TOTAL_PURCHASE) }}</h4>
+        <h4>{{ formattingNumber(GET_TOTAL_PURCHASE) }}</h4>
       </div>
-      <div class="spacing-between" v-if="isDropshipper">
+      <div class="spacing-between" v-if="_store_dropshipper.is_dropshipper">
         <p>Dropshipping fee</p>
-        <h4>{{ formattedNumber(dropshippingFee) }}</h4>
+        <h4>{{ formattingNumber(_store_dropshipping_fee) }}</h4>
       </div>
-      <div class="spacing-between" v-if="selectedShipmentVendor">
-        <p><b>{{ selectedShipmentVendor.name }}</b> shipment</p>
-        <h4>{{ formattedNumber(selectedShipmentVendor.price) }}</h4>
+      <div class="spacing-between" v-if="_store_shipment_vendor">
+        <p><b>{{ _store_shipment_vendor.name }}</b> shipment</p>
+        <h4>{{ formattingNumber(_store_shipment_vendor.price) }}</h4>
       </div>
       <div class="spacing-between mb-5">
         <Title title="Total" />
-        <Title :title="formattedNumber(totalPayment())" />
+        <Title :title="formattingNumber(totalPayment())" />
       </div>
       <div class="centerized-content">
         <SubmitButton
@@ -48,55 +48,81 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
+import { formattedNumber } from '../../helpers'
 import Title from '../atoms/Title'
 import SubmitButton from '../atoms/SubmitButton'
 import ExtrasSelectedList from '../atoms/ExtrasSelectedList'
 
 export default {
   name: 'Summary',
+
   components: {
     Title,
     SubmitButton,
     ExtrasSelectedList
   },
+
+  data() {
+    return {
+      formattingNumber: formattedNumber
+    }
+  },
+
   computed: {
     ...mapState({
-      purchaseItems: state => state.orders.purchase_items,
-      isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper,
-      dropshippingFee: state => state.extras.dropshipping_fee,
-      selectedShipmentVendor: state => state.orders.shipment_vendor,
-      selectedPaymentMethod: state => state.orders.payment_method,
-      stepperPosition: state => state.stepper.stepper_position,
-      deliveryDetails: state => state.orders.delivery_details,
-      stepper0Valid: state => state.stepper.stepper_0_valid
+      _store_purchase_items: state => state.orders.purchase_items,
+      _store_dropshipper: state => state.orders.delivery_details.dropshipper,
+      _store_dropshipping_fee: state => state.extras.dropshipping_fee,
+      _store_shipment_vendor: state => state.orders.shipment_vendor,
+      _store_payment_method: state => state.orders.payment_method,
+      _store_stepper_position: state => state.stepper.stepper_position,
+      _store_delivery_details: state => state.orders.delivery_details,
+      _store_stepper_0_valid: state => state.stepper.stepper_0_valid
     }),
+
     ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
+
   methods: {
     ...mapMutations(['SUBMIT_DELIVERY_DETAILS']),
-    formattedNumber(number) {
-      return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-    },
+
     totalPayment() {
+      const {
+        _store_shipment_vendor,
+        _store_dropshipping_fee,
+        _store_dropshipper
+      } = this
+
       let amount = 0
+
       amount += this.GET_TOTAL_PURCHASE
-      this.isDropshipper ? amount += this.dropshippingFee : amount
-      this.selectedShipmentVendor ? amount += this.selectedShipmentVendor.price : amount
+      _store_dropshipper.is_dropshipper ? amount += _store_dropshipping_fee : amount
+      _store_shipment_vendor ? amount += _store_shipment_vendor.price : amount
       return amount
     },
+
     submitDeliveryDetails() {
       this.SUBMIT_DELIVERY_DETAILS()
     },
+
     submitButtonWording() {
-      if (this.stepperPosition === 0) {
+      const { _store_stepper_position, _store_payment_method } = this
+
+      if (_store_stepper_position === 0) {
         return 'Continue to Payment'
       }
 
-      return this.selectedPaymentMethod ? 'Pay with ' + this.selectedPaymentMethod.name : 'Select payment method'
+      return _store_payment_method ? (
+        'Pay with ' + _store_payment_method.name
+      ) : (
+        'Select payment method'
+      )
     },
+
     isDisabledButton() {
-      console.log(this.stepper0Valid)
-      if (this.stepper0Valid) {
+      const { _store_stepper_0_valid } = this
+
+      if (_store_stepper_0_valid) {
         return false
       }
       return true

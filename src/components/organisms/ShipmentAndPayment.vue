@@ -22,9 +22,6 @@ export default {
     Title,
     FormShipment,
     FormPayment
-  },
-  data() {
-    return {}
   }
 }
 </script>

@@ -23,43 +23,53 @@
 import { mapMutations, mapState } from 'vuex'
 import Title from '../atoms/Title'
 import FormDeliveryDetails from '../molecules/FormDeliveryDetails'
+import { loggers } from '../../helpers'
 
 export default {
   name: 'DeliveryDetails',
+
   components: {
     Title,
     FormDeliveryDetails
   },
+
   data() {
     return {
-      isDropshipper: null,
-      emailInput: ''
+      isDropshipper: null
     }
   },
+
   computed: {
     ...mapState({
-      deliveryDetails: state => state.orders.delivery_details,
-      stepper0Valid: state => state.stepper.stepper_0_valid
+      _store_delivery_details: state => state.orders.delivery_details,
+      _store_stepper_0_valid: state => state.stepper.stepper_0_valid
     })
   },
+
   methods: {
     ...mapMutations([
       'SETUP_DROPSHIPPER',
       'DISALLOW_GO_TO_1',
-      'ALLOW_GO_TO_1',
+      'ALLOW_GO_TO_1'
     ]),
     clickDropshipperCheckBox() {
       const {
-        dropshipper
-      } = this.deliveryDetails
-      if (!dropshipper.is_dropshipper && (!dropshipper.name || !dropshipper.phone_number)) {
-        this.SETUP_DROPSHIPPER(this.isDropshipper)
-        this.DISALLOW_GO_TO_1()
+        isDropshipper,
+        _store_delivery_details,
+        DISALLOW_GO_TO_1,
+        ALLOW_GO_TO_1, SETUP_DROPSHIPPER
+      } = this
+      const { is_dropshipper, name, phone_number  } = _store_delivery_details.dropshipper
+
+      if (!is_dropshipper && (!name || !phone_number)) {
+        SETUP_DROPSHIPPER(isDropshipper)
+        DISALLOW_GO_TO_1()
       } else {
-        this.SETUP_DROPSHIPPER(this.isDropshipper)
-        this.ALLOW_GO_TO_1()
+        SETUP_DROPSHIPPER(isDropshipper)
+        ALLOW_GO_TO_1()
       }
-      console.log(this.isDropshipper)
+
+      loggers.dropshipperStatus(isDropshipper)
     }
   }
 }

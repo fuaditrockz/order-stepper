@@ -6,7 +6,6 @@
         <v-checkbox
           v-model="isDropshipperModel"
           color="success"
-          @change="clickDropshipperCheckBox()"
         >
           <template v-slot:label>
             <h4>Send as dropshipper</h4>
@@ -74,14 +73,7 @@ export default {
       'SETUP_DROPSHIPPER',
       'DISALLOW_GO_TO_1',
       'ALLOW_GO_TO_1'
-    ]),
-    clickDropshipperCheckBox() {
-      const {
-        _store_stepper_0_valid,
-      } = this
-
-      console.log('VALID FORM', _store_stepper_0_valid)
-    }
+    ])
   }
 }
 </script>

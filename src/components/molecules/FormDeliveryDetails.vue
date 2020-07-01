@@ -32,7 +32,6 @@
           <div class="input-icon" v-show="isEmailIconAppear">
             <v-icon :color="errors[0] ? '#ffa502' : '#2ed573'" size="20px">{{ errors[0] ? 'close' : 'check' }}</v-icon>
           </div>
-          {{ test(errors[0]) }}
         </ValidationProvider>
       </div>
       <div class="input-wrapper">
@@ -65,7 +64,6 @@
           <div class="input-icon" v-show="isPhoneNumberIconAppear">
             <v-icon :color="errors[0] ? '#ffa502' : '#2ed573'" size="20px">{{ errors[0] ? 'close' : 'check' }}</v-icon>
           </div>
-          {{ test(errors[0]) }}
         </ValidationProvider>
       </div>
       <div class="input-wrapper">
@@ -98,7 +96,6 @@
           <div class="input-icon" v-show="isAddressIconAppear">
             <v-icon :color="errors[0] ? '#ffa502' : '#2ed573'" size="20px">{{ errors[0] ? 'close' : 'check' }}</v-icon>
           </div>
-          {{ test(errors[0]) }}
         </ValidationProvider>
       </div>
     </v-col>
@@ -135,7 +132,6 @@
           <div class="input-icon" v-show="isDropshipperNameIconAppear & _store_dropshipper.is_dropshipper">
             <v-icon :color="errors[0] ? '#ffa502' : '#2ed573'" size="20px">{{ errors[0] ? 'close' : 'check' }}</v-icon>
           </div>
-          {{ test(errors[0]) }}
         </ValidationProvider>
       </div>
       <div class="input-wrapper">
@@ -170,7 +166,6 @@
           <div class="input-icon" v-show="isDropshipperPhoneNumberIconAppear & _store_dropshipper.is_dropshipper">
             <v-icon :color="errors[0] ? '#ffa502' : '#2ed573'" size="20px">{{ errors[0] ? 'close' : 'check' }}</v-icon>
           </div>
-          {{ test(errors[0]) }}
         </ValidationProvider>
       </div>
     </v-col>
@@ -245,13 +240,6 @@ export default {
       'ALLOW_GO_TO_1',
       'DISALLOW_GO_TO_1',
     ]),
-
-    test(i) {
-      console.log(i)
-      if (i) {
-        this.DISALLOW_GO_TO_1()
-      }
-    },
 
     onChangeInput(id, value) {      
       this.UPDATE_DELIVERY_DETAILS({id, value})

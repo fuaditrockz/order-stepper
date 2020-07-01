@@ -19,16 +19,20 @@ export default {
   },
   computed: {
     ...mapState({
-      stepperPosition: state => state.stepper.stepper_position
+      _store_stepper_position: state => state.stepper.stepper_position
     })
   },
   methods: {
     ...mapMutations(['BACK_TO_PREVIOUS_PAGE']),
     clickBack() {
-      if (this.stepperPosition === 1) {
-        this.BACK_TO_PREVIOUS_PAGE(0)
+      const {
+        _store_stepper_position,
+        BACK_TO_PREVIOUS_PAGE
+      } = this
+      if (_store_stepper_position === 1) {
+        BACK_TO_PREVIOUS_PAGE(0)
       } else {
-        this.BACK_TO_PREVIOUS_PAGE(0)
+        BACK_TO_PREVIOUS_PAGE(0)
       }
     }
   }

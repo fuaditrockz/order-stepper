@@ -2,11 +2,11 @@
   <v-container>
     <StepperIndicator />
     <StepperHeader
-      :previousPage="stepperPosition === 0 ? 'cart' : 'delivery'"
-      :isBack="stepperPosition < 2"
+      :previousPage="_store_stepper_position === 0 ? 'cart' : 'delivery'"
+      :isBack="_store_stepper_position < 2"
     />
     <v-row class="pa-2">
-      <RightContainerTemplate :child_component="getPage(stepperPosition)"/>
+      <RightContainerTemplate :child_component="getPage(_store_stepper_position)"/>
       <Summary />
     </v-row>
   </v-container>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState({
-      stepperPosition: state => state.stepper.stepper_position
+      _store_stepper_position: state => state.stepper.stepper_position
     })
   },
   methods: {

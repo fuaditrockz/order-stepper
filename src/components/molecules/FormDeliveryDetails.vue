@@ -117,7 +117,6 @@ export default {
     emailInput: {
       set(val) {
         const id = 'email'
-        console.log(val)
         this.UPDATE_DELIVERY_DETAILS({id, val})
       },
       get() {
@@ -127,7 +126,6 @@ export default {
     phoneNumberInput: {
       set(val) {
         const id = 'phone_number'
-        console.log(val)
         this.UPDATE_DELIVERY_DETAILS({id, val})
       },
       get() {
@@ -137,7 +135,6 @@ export default {
     addressInput: {
       set(val) {
         const id = 'address'
-        console.log(val)
         this.UPDATE_DELIVERY_DETAILS({id, val})
       },
       get() {
@@ -147,7 +144,6 @@ export default {
     dropshipperNameInput: {
       set(val) {
         const id = 'dropshipper_name'
-        console.log(val)
         this.UPDATE_DELIVERY_DETAILS({id, val})
       },
       get() {
@@ -157,7 +153,6 @@ export default {
     dropshipperPhoneNumberInput: {
       set(val) {
         const id = 'dropshipper_phone_number'
-        console.log(val)
         this.UPDATE_DELIVERY_DETAILS({id, val})
       },
       get() {

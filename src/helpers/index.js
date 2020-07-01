@@ -35,7 +35,7 @@ const formRules = () => {
   })
   extend('address', {
     validate(val) {
-      if (val.length < 5) {
+      if (val.length < 5 || val.length > 120) {
         return false
       }
       return true

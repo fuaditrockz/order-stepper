@@ -40,8 +40,15 @@
         <SubmitButton
           :title="submitButtonWording()"
           :submitFunc="submitDeliveryDetails"
-          :isDisabled="!_store_stepper_0_valid"
+          :isDisabled="
+            _store_stepper_position === 0 ? (
+              !_store_stepper_0_valid
+            ) : (
+              !_store_stepper_1_valid
+            )
+          "
         />
+        {{ enableSubmitButton() }}
       </div>
     </v-col>
   </v-col>
@@ -78,14 +85,27 @@ export default {
       _store_payment_method: state => state.orders.payment_method,
       _store_stepper_position: state => state.stepper.stepper_position,
       _store_delivery_details: state => state.orders.delivery_details,
-      _store_stepper_0_valid: state => state.stepper.stepper_0_valid
+      _store_stepper_0_valid: state => state.stepper.stepper_0_valid,
+      _store_stepper_1_valid: state => state.stepper.stepper_1_valid
     }),
 
     ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
 
   methods: {
-    ...mapMutations(['SUBMIT_DELIVERY_DETAILS']),
+    ...mapMutations(['SUBMIT_DELIVERY_DETAILS', 'ALLOW_GO_TO_2']),
+
+    enableSubmitButton() {
+      const { 
+        _store_shipment_vendor,
+        _store_payment_method,
+        ALLOW_GO_TO_2
+      } = this
+
+      if (_store_shipment_vendor && _store_payment_method) {
+        ALLOW_GO_TO_2()
+      }
+    },
 
     totalPayment() {
       const {

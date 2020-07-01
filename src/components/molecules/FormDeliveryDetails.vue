@@ -115,49 +115,34 @@ export default {
     }),
 
     emailInput: {
-      set(val) {
-        const id = 'email'
-        this.UPDATE_DELIVERY_DETAILS({id, val})
-      },
       get() {
         return this._store_delivery_details.email
-      }
+      },
+      set() {}
     },
     phoneNumberInput: {
-      set(val) {
-        const id = 'phone_number'
-        this.UPDATE_DELIVERY_DETAILS({id, val})
-      },
       get() {
         return this._store_delivery_details.phone_number
-      }
+      },
+      set() {}
     },
     addressInput: {
-      set(val) {
-        const id = 'address'
-        this.UPDATE_DELIVERY_DETAILS({id, val})
-      },
       get() {
         return this._store_delivery_details.address
-      }
+      },
+      set() {}
     },
     dropshipperNameInput: {
-      set(val) {
-        const id = 'dropshipper_name'
-        this.UPDATE_DELIVERY_DETAILS({id, val})
-      },
       get() {
         return this._store_dropshipper.name
-      }
+      },
+      set() {}
     },
     dropshipperPhoneNumberInput: {
-      set(val) {
-        const id = 'dropshipper_phone_number'
-        this.UPDATE_DELIVERY_DETAILS({id, val})
-      },
       get() {
         return this._store_dropshipper.phone_number
-      }
+      },
+      set() {}
     }
   },
 
@@ -170,49 +155,31 @@ export default {
 
     test(i) {
       console.log(i)
-    },
-
-    onChangeInput(id, value) {
-      this.UPDATE_DELIVERY_DETAILS({id, value})
-    },
-
-    checkAllInput() {
-      const { ALLOW_GO_TO_1, DISALLOW_GO_TO_1 } = this
-      const { name, phone_number, address } = this._store_dropshipper
-      const isAllInputValid = name && phone_number && address
-
-      if (isAllInputValid) {
-        ALLOW_GO_TO_1()
-      } else {
-        DISALLOW_GO_TO_1()
+      if (i) {
+        this.DISALLOW_GO_TO_1()
       }
     },
 
-    allowSubmitToPayment() {
-      const {
-        emailInputError,
-        phoneNumberInputError,
-        addressInputError,
-        dropshipperNameInputError,
-        dropshipperPhoneNumberInputError,
-        _store_dropshipper,
-        ALLOW_GO_TO_1,
-        DISALLOW_GO_TO_1
-      } = this
-      const { is_dropshipper } = _store_dropshipper
-
-      if (is_dropshipper) {
-        !emailInputError && !phoneNumberInputError && !addressInputError && !dropshipperNameInputError && !dropshipperPhoneNumberInputError ? (
-          ALLOW_GO_TO_1()
-        ) : (
-          DISALLOW_GO_TO_1()
-        )
-      } else {
-        if (!emailInputError && !phoneNumberInputError && !addressInputError) {
-          ALLOW_GO_TO_1()
+    onChangeInput(id, value) {      
+      this.UPDATE_DELIVERY_DETAILS({id, value})
+      const { email, phone_number, address  } = this._store_delivery_details
+      const { name, phone_number: dropshipperPhone, is_dropshipper } = this._store_dropshipper
+      if (email && phone_number && address) {
+        if (is_dropshipper) {
+          if (name && dropshipperPhone) {
+            this.ALLOW_GO_TO_1()
+          } else {
+            this.DISALLOW_GO_TO_1()
+          }
         } else {
-          DISALLOW_GO_TO_1()
+          if (email && phone_number && address) {
+            this.ALLOW_GO_TO_1()
+          } else {
+            this.DISALLOW_GO_TO_1()
+          }
         }
+      } else {
+        this.DISALLOW_GO_TO_1()
       }
     }
   }

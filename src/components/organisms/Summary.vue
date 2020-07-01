@@ -39,9 +39,8 @@
         <SubmitButton
           :title="submitButtonWording()"
           :submitFunc="submitDeliveryDetails"
-          :isDisabled="isDisabledButton()"
+          :isDisabled="!_store_stepper_0_valid"
         />
-        {{ isDisabledButton() }}
       </div>
     </v-col>
   </v-col>
@@ -118,19 +117,6 @@ export default {
       ) : (
         'Select payment method'
       )
-    },
-
-    isDisabledButton() {
-      const { _store_stepper_0_valid, _store_dropshipper } = this
-      const { is_dropshipper } = _store_dropshipper
-
-      if (is_dropshipper && _store_stepper_0_valid) {
-        return false
-      } else if (_store_stepper_0_valid) {
-        return false
-      } else {
-        return true
-      }
     }
   }
 }

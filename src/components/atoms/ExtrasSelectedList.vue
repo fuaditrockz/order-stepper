@@ -2,7 +2,7 @@
   <div class="extras-list-wrapper mb-5">
     <div class="divider mb-5" />
     <h4>{{ title }}</h4>
-    <h3>{{ type === 'shipment' ? `${timeFormat(estimation)} by ` : '' }} {{ vendor }}</h3>
+    <h3>{{ type === 'shipment' ? `${getEstimation(estimation)} by ` : '' }} {{ vendor }}</h3>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     type: String
   },
   methods: {
-    timeFormat(est) {
+    getEstimation(est) {
       if (est > 1) {
         return `${est} days`
       }

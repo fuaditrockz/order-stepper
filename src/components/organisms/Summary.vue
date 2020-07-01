@@ -93,7 +93,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SUBMIT_DELIVERY_DETAILS', 'ALLOW_GO_TO_2']),
+    ...mapMutations(['SUBMIT_STEPPER', 'ALLOW_GO_TO_2', 'GENERATE_ORDER_ID']),
 
     enableSubmitButton() {
       const { 
@@ -123,7 +123,11 @@ export default {
     },
 
     submitDeliveryDetails() {
-      this.SUBMIT_DELIVERY_DETAILS()
+      const { SUBMIT_STEPPER, GENERATE_ORDER_ID, _store_stepper_1_valid } = this
+      SUBMIT_STEPPER()
+      if (_store_stepper_1_valid) {
+        GENERATE_ORDER_ID()
+      }
     },
 
     submitButtonWording() {

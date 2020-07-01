@@ -9,7 +9,7 @@ const getters = {}
 const actions = {}
 
 const mutations = {
-  SUBMIT_DELIVERY_DETAILS: state => {
+  SUBMIT_STEPPER: state => {
     state.stepper_position += 1
     console.log('MOVE TO SHIPMENT & PAYMENT', state.stepper_position)
   },

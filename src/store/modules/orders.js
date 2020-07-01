@@ -1,4 +1,7 @@
+import short from 'short-uuid'
+
 const state = {
+  order_id: null,
   purchase_items: [
     {
       name: "Ps3 Slim Sony + Hdd 500gb + 2 Stick Warlles + Full Games",
@@ -71,6 +74,11 @@ const mutations = {
   },
   UPDATE_PAYMENT_VENDOR: (state, payload) => {
     state.payment_method = payload
+  },
+  GENERATE_ORDER_ID: (state) => {
+    const id = short("23456789qwertyupasdfghjklzxcvbnm")
+    
+    state.order_id = id.generate()
   }
 }
 

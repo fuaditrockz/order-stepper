@@ -30,7 +30,7 @@
           id="address"
           placeholder="Address"
           type="text"
-          :class="'free-text input-style mb-3 ' + (phoneNumberInputError ? 'error-color' : 'regular-color')"
+          :class="'free-text input-style mb-3 ' + (addressInputError ? 'error-color' : 'regular-color')"
           :value="address"
           @input="onChangeInput('address', $event.target.value)"
           @blur="validationInput"
@@ -92,7 +92,11 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(['UPDATE_DELIVERY_DETAILS']),
+    ...mapMutations([
+      'UPDATE_DELIVERY_DETAILS',
+      'ALLOW_GO_TO_1',
+      'DISALLOW_GO_TO_1',
+    ]),
     onChangeInput(id, value) {
       this.UPDATE_DELIVERY_DETAILS({id, value})
     },
@@ -103,7 +107,6 @@ export default {
           if(e.target.value.length === 0 || emailRegex.test(e.target.value) === false) {
             this.emailInputError = true
           } else {
-            console.log(emailRegex.test(e.target.value))
             this.emailInputError = false
           }
           break;
@@ -139,6 +142,33 @@ export default {
           break;
         default:
           break;
+      }
+      this.allowSubmitToPayment()
+    },
+    allowSubmitToPayment() {
+      const {
+        emailInputError,
+        phoneNumberInputError,
+        addressInputError,
+        dropshipperNameInputError,
+        dropshipperPhoneNumberInputError,
+        isDropshipper,
+        ALLOW_GO_TO_1,
+        DISALLOW_GO_TO_1
+      } = this
+
+      if (isDropshipper) {
+        !emailInputError && !phoneNumberInputError && !addressInputError && !dropshipperNameInputError && !dropshipperPhoneNumberInputError ? (
+          DISALLOW_GO_TO_1()
+        ) : (
+          ALLOW_GO_TO_1()
+        )
+      } else {
+        !emailInputError && !phoneNumberInputError && !addressInputError ? (
+          DISALLOW_GO_TO_1()
+        ) : (
+          ALLOW_GO_TO_1()
+        )
       }
     }
   }

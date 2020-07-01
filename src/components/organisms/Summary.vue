@@ -39,6 +39,7 @@
         <SubmitButton
           :title="submitButtonWording()"
           :submitFunc="submitDeliveryDetails"
+          :isDisabled="isDisabledButton()"
         />
       </div>
     </v-col>
@@ -65,7 +66,9 @@ export default {
       dropshippingFee: state => state.extras.dropshipping_fee,
       selectedShipmentVendor: state => state.orders.shipment_vendor,
       selectedPaymentMethod: state => state.orders.payment_method,
-      stepperPosition: state => state.stepper.stepper_position
+      stepperPosition: state => state.stepper.stepper_position,
+      deliveryDetails: state => state.orders.delivery_details,
+      stepper0Valid: state => state.stepper.stepper_0_valid
     }),
     ...mapGetters(['GET_TOTAL_PURCHASE'])
   },
@@ -90,6 +93,12 @@ export default {
       }
 
       return this.selectedPaymentMethod ? 'Pay with ' + this.selectedPaymentMethod.name : 'Select payment method'
+    },
+    isDisabledButton() {
+      if (this.stepper0Valid) {
+        return true
+      }
+      return false
     }
   }
 }

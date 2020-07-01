@@ -36,6 +36,8 @@ p
   background-color #FF8A00
 .primary-color
   color #FF8A00
+.disabled-color
+  background-color #a4b0be
 .spacing-between
   justify-content space-between
   display flex

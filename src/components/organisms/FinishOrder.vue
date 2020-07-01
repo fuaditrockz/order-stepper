@@ -5,7 +5,14 @@
       <v-col class="zero-padding">
         <h4>Order ID: {{ _store_order_id }}</h4>
         <p class="mb-10">Your order will be delivered {{ getEstimation() }} with {{ _store_shipment_vendor.name }}</p>
-        <BackButton content="Go to homepage" :click="goToHomePage" buttonWidth="220px" />
+        <a
+          href="#"
+          @click="goToHomePage()"
+          style="width: 160px;"
+        >
+          <v-icon color="#535c68" size="20px">arrow_back</v-icon>
+          <h4>Go to homepage</h4>
+        </a>
       </v-col>
     </v-col>
   </div>
@@ -14,14 +21,10 @@
 <script>
 import { mapState } from 'vuex'
 import Title from '../atoms/Title'
-import BackButton from '../atoms/BackButton'
 
 export default {
   name: 'FinishOrder',
-  components: {
-    Title,
-    BackButton
-  },
+  components: { Title },
   computed: {
     ...mapState({
       _store_order_id: state => state.orders.order_id,
@@ -44,6 +47,18 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+a
+  float left
+  display inline-flex
+  justify-content space-between 
+  text-decoration none
+  padding 5px 12px 5px 5px
+  border-radius 5px
+  transition: 0.3s;
+  &:hover
+    background-color rgba(255, 138, 0, 0.2)
+  h4
+    color #535c68
 .finish-content-wrapper
   min-height 400px
   padding 150px

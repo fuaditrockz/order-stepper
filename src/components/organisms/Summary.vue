@@ -36,7 +36,7 @@
         <Title title="Total" />
         <Title :title="formattingNumber(totalPayment())" />
       </div>
-      <div class="centerized-content">
+      <div class="centerized-content" v-if="_store_stepper_position < 2">
         <SubmitButton
           :title="submitButtonWording()"
           :submitFunc="submitDeliveryDetails"

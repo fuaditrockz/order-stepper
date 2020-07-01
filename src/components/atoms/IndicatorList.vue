@@ -23,14 +23,31 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.v-icon
+  @media screen and (max-width: 600px)
+    font-size 16px
+  @media screen and (max-width: 400px)
+    font-size 10px
 p
   margin-bottom 0
   margin-top 2px
   margin-right 10px
   font-weight bold
+  @media screen and (max-width: 600px)
+    font-size 12px
+    margin-top 5px
+    margin-right 5px
+  @media screen and (max-width: 400px)
+    font-size 10px
+    margin-top 7px
+    margin-right 3px
 .indicator-list-container
   display flex
   margin 0 10px
+  @media screen and (max-width: 600px)
+    margin 0 5px
+  @media screen and (max-width: 400px)
+    margin 0 2px
 .number
   display inline-block
   width 30px
@@ -41,6 +58,10 @@ p
   border-radius 50px
   font-weight bold
   margin-right 10px
+  @media screen and (max-width: 600px)
+    font-size 12px
+  @media screen and (max-width: 400px)
+    font-size 10px
 .number-active
   color #fff
   background-color #FF8A00

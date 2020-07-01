@@ -270,6 +270,8 @@ export default {
 <style lang="stylus" scoped>
 .input-wrapper 
   width 95%
+  @media screen and (max-width: 600px)
+    width 100%
   textarea
     height 150px
   .textarea-label

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="spacing-between pr-5">
+    <v-row class="delivery-details-container spacing-between pr-5">
       <Title size="big" title="Delivery Details" />
       <div>
         <v-checkbox
@@ -77,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.delivery-details-container
+  @media screen and (max-width: 600px)
+    padding 0 10px !important
+</style>

@@ -41,5 +41,7 @@ export default {
 
 <style lang="stylus" scoped>
 .header
-  padding 20px 40px 0px
+  padding 20px 40px 0
+  @media screen and (max-width: 600px)
+    padding 40px 10px 0
 </style>

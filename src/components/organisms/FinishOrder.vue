@@ -62,6 +62,9 @@ a
 .finish-content-wrapper
   min-height 400px
   padding 150px
+  @media screen and (max-width: 600px)
+    padding 0
+    min-height 200px
   .title
     width 200px
 </style>

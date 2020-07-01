@@ -63,6 +63,12 @@ export default {
     height 100%
     margin 0 auto
     padding 10px
+    @media screen and (min-width: 768px)
+      margin 0 25%
+      width 50%
+    @media screen and (max-width: 600px)
+      margin 0
+      width 100%
     ul
       position relative
       top 25%

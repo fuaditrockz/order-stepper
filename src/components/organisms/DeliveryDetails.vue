@@ -4,8 +4,7 @@
       <Title size="big" title="Delivery Details" />
       <div>
         <v-checkbox
-          v-model="isDropshipper"
-          :value="isDropshipper"
+          v-model="isDropshipperTest"
           color="success"
           @change="clickDropshipperCheckBox()"
         >
@@ -41,9 +40,18 @@ export default {
 
   computed: {
     ...mapState({
+      _store_dropshipper: state => state.orders.delivery_details.dropshipper,
       _store_delivery_details: state => state.orders.delivery_details,
       _store_stepper_0_valid: state => state.stepper.stepper_0_valid
-    })
+    }),
+    isDropshipperTest: {
+      get() {
+        return this._store_dropshipper.is_dropshipper
+      },
+      set(value) {
+        this.SETUP_DROPSHIPPER(value)
+      }
+    }
   },
 
   methods: {
@@ -54,22 +62,34 @@ export default {
     ]),
     clickDropshipperCheckBox() {
       const {
-        isDropshipper,
+        _store_stepper_0_valid,
         _store_delivery_details,
+        _store_dropshipper,
         DISALLOW_GO_TO_1,
-        ALLOW_GO_TO_1, SETUP_DROPSHIPPER
+        ALLOW_GO_TO_1,
       } = this
-      const { is_dropshipper, name, phone_number  } = _store_delivery_details.dropshipper
+      const { name, phone_number  } = _store_delivery_details
+      const { is_dropshipper } = _store_dropshipper
 
-      if (!is_dropshipper && (!name || !phone_number)) {
-        SETUP_DROPSHIPPER(isDropshipper)
+      loggers.dropshipperStatus(is_dropshipper)
+
+      if (is_dropshipper) {
         DISALLOW_GO_TO_1()
+        if (name && phone_number) {
+          ALLOW_GO_TO_1()
+        } else {
+          DISALLOW_GO_TO_1()
+        }
       } else {
-        SETUP_DROPSHIPPER(isDropshipper)
-        ALLOW_GO_TO_1()
+        DISALLOW_GO_TO_1()
+        if (_store_stepper_0_valid) {
+          ALLOW_GO_TO_1() 
+        } else {
+          DISALLOW_GO_TO_1()
+        }
       }
 
-      loggers.dropshipperStatus(isDropshipper)
+      console.log('VALID FORM', _store_stepper_0_valid)
     }
   }
 }

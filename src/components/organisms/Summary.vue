@@ -41,6 +41,7 @@
           :submitFunc="submitDeliveryDetails"
           :isDisabled="isDisabledButton()"
         />
+        {{ isDisabledButton() }}
       </div>
     </v-col>
   </v-col>
@@ -120,12 +121,16 @@ export default {
     },
 
     isDisabledButton() {
-      const { _store_stepper_0_valid } = this
+      const { _store_stepper_0_valid, _store_dropshipper } = this
+      const { is_dropshipper } = _store_dropshipper
 
-      if (_store_stepper_0_valid) {
+      if (is_dropshipper && _store_stepper_0_valid) {
         return false
+      } else if (_store_stepper_0_valid) {
+        return false
+      } else {
+        return true
       }
-      return true
     }
   }
 }

@@ -2,65 +2,88 @@
   <v-row>
     <v-col cols="12" lg="6" class="zero-padding">
       <div class="input-wrapper">
-        <input
-          id="email"
-          type="text"
-          placeholder="Email"
-          :class="'input-style mb-3 ' + (emailInputError ? 'error-color' : 'regular-color')"
-          :value="_store_delivery_details.email"
-          @input="onChangeInput($event.target.id, $event.target.value)"
-          @blur="validationInput"
-        />
+        <ValidationProvider
+          rules="email|required"
+          v-slot="{ errors }"
+        >
+           <input
+            id="email"
+            type="text"
+            placeholder="Email"
+            :class="'input-style mb-3 ' + (errors[0] ? 'error-color' : 'regular-color')"
+            v-model="emailInput"
+            @input="onChangeInput($event.target.id, $event.target.value)"
+          />
+          {{ test(errors[0]) }}
+        </ValidationProvider>
       </div>
       <div class="input-wrapper">
-        <input
-          id="phone_number"
-          required
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          type="tel"
-          placeholder="Phone number"
-          :class="'input-style mb-3 ' + (phoneNumberInputError ? 'error-color' : 'regular-color')"
-          :value="_store_delivery_details.phone_number"
-          @input="onChangeInput($event.target.id, $event.target.value)"
-          @blur="validationInput"
-        />
+        <ValidationProvider
+          rules="phone_number|required"
+          v-slot="{ errors }"
+        >
+          <input
+            id="phone_number"
+            type="tel"
+            placeholder="Phone number"
+            :class="'input-style mb-3 ' + (errors[0] ? 'error-color' : 'regular-color')"
+            v-model="phoneNumberInput"
+            @input="onChangeInput($event.target.id, $event.target.value)"
+          />
+          {{ test(errors[0]) }}
+        </ValidationProvider>
       </div>
       <div class="input-wrapper">
-        <textarea
-          id="address"
-          placeholder="Address"
-          type="text"
-          :class="'free-text input-style mb-3 ' + (addressInputError ? 'error-color' : 'regular-color')"
-          :value="_store_delivery_details.adress"
-          @input="onChangeInput($event.target.id, $event.target.value)"
-          @blur="validationInput"
-        />
+        <ValidationProvider
+          rules="address|required"
+          v-slot="{ errors }"
+        >
+          <textarea
+            id="address"
+            placeholder="Address"
+            type="text"
+            :class="'free-text input-style mb-3 ' + (errors[0] ? 'error-color' : 'regular-color')"
+            v-model="addressInput"
+            @input="onChangeInput($event.target.id, $event.target.value)"
+          />
+          {{ test(errors[0]) }}
+        </ValidationProvider>
       </div>
     </v-col>
     <v-col cols="12" lg="6" class="zero-padding">
       <div class="input-wrapper">
-        <input
-          id="dropshipper_name"
-          type="text"
-          placeholder="Dropshipper name"
-          :class="'input-style mb-3 ' + (dropshipperNameInputError ? 'error-color' : 'regular-color')"
-          :value="_store_dropshipper.name"
-          @input="onChangeInput($event.target.id, $event.target.value)"
-          :disabled="!_store_dropshipper.is_dropshipper"
-          @blur="validationInput"
-        />
+        <ValidationProvider
+          rules="required"
+          v-slot="{ errors }"
+        >
+          <input
+            id="dropshipper_name"
+            type="text"
+            placeholder="Dropshipper name"
+            :class="'input-style mb-3 ' + (errors[0] && _store_dropshipper.is_dropshipper ? 'error-color' : 'regular-color')"
+            v-model="dropshipperNameInput"
+            @input="onChangeInput($event.target.id, $event.target.value)"
+            :disabled="!_store_dropshipper.is_dropshipper"
+          />
+          {{ test(errors[0]) }}
+        </ValidationProvider>
       </div>
       <div class="input-wrapper">
-        <input
-          id="dropshipper_phone_number"
-          type="text"
-          placeholder="Dropshipper phone number"
-          :class="'input-style mb-3 ' + (dropshipperPhoneNumberInputError ? 'error-color' : 'regular-color')"
-          :value="_store_dropshipper.phone_number"
-          @input="onChangeInput($event.target.id, $event.target.value)"
-          :disabled="!_store_dropshipper.is_dropshipper"
-          @blur="validationInput"
-        />
+        <ValidationProvider
+          rules="phone_number|required"
+          v-slot="{ errors }"
+        >
+          <input
+            id="dropshipper_phone_number"
+            type="tel"
+            placeholder="Dropshipper phone number"
+            :class="'input-style mb-3 ' + (errors[0] && _store_dropshipper.is_dropshipper ? 'error-color' : 'regular-color')"
+            v-model="dropshipperPhoneNumberInput"
+            @input="onChangeInput($event.target.id, $event.target.value)"
+            :disabled="!_store_dropshipper.is_dropshipper"
+          />
+          {{ test(errors[0]) }}
+        </ValidationProvider>
       </div>
     </v-col>
   </v-row>
@@ -68,18 +91,20 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import phone from 'phone'
+import { ValidationProvider  } from 'vee-validate'
+import { formRules } from '../../helpers'
+
+formRules()
 
 export default {
   name: 'FormDeliveryDetails',
+
+  components: {
+    ValidationProvider
+  },
   
   data() {
     return {
-      emailInputError: false,
-      phoneNumberInputError: false,
-      dropshipperNameInputError: false,
-      dropshipperPhoneNumberInputError: false,
-      addressInputError: false
     }
   },
 
@@ -87,7 +112,58 @@ export default {
     ...mapState({
       _store_delivery_details: state => state.orders.delivery_details,
       _store_dropshipper: state => state.orders.delivery_details.dropshipper
-    })
+    }),
+
+    emailInput: {
+      set(val) {
+        const id = 'email'
+        console.log(val)
+        this.UPDATE_DELIVERY_DETAILS({id, val})
+      },
+      get() {
+        return this._store_delivery_details.email
+      }
+    },
+    phoneNumberInput: {
+      set(val) {
+        const id = 'phone_number'
+        console.log(val)
+        this.UPDATE_DELIVERY_DETAILS({id, val})
+      },
+      get() {
+        return this._store_delivery_details.phone_number
+      }
+    },
+    addressInput: {
+      set(val) {
+        const id = 'address'
+        console.log(val)
+        this.UPDATE_DELIVERY_DETAILS({id, val})
+      },
+      get() {
+        return this._store_delivery_details.address
+      }
+    },
+    dropshipperNameInput: {
+      set(val) {
+        const id = 'dropshipper_name'
+        console.log(val)
+        this.UPDATE_DELIVERY_DETAILS({id, val})
+      },
+      get() {
+        return this._store_dropshipper.name
+      }
+    },
+    dropshipperPhoneNumberInput: {
+      set(val) {
+        const id = 'dropshipper_phone_number'
+        console.log(val)
+        this.UPDATE_DELIVERY_DETAILS({id, val})
+      },
+      get() {
+        return this._store_dropshipper.phone_number
+      }
+    }
   },
 
   methods: {
@@ -97,58 +173,24 @@ export default {
       'DISALLOW_GO_TO_1',
     ]),
 
+    test(i) {
+      console.log(i)
+    },
+
     onChangeInput(id, value) {
       this.UPDATE_DELIVERY_DETAILS({id, value})
     },
 
-    validationInput(e) {
-      const { allowSubmitToPayment } = this
-      const { id, value } = e.target
+    checkAllInput() {
+      const { ALLOW_GO_TO_1, DISALLOW_GO_TO_1 } = this
+      const { name, phone_number, address } = this._store_dropshipper
+      const isAllInputValid = name && phone_number && address
 
-      switch (id) {
-        case 'email':
-          var emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          if(value.length === 0 || emailRegex.test(value) === false) {
-            this.emailInputError = true
-          } else {
-            this.emailInputError = false
-          }
-          break;
-        case 'phone-number':
-          if(value.length === 0 || phone(value).length === 0) {
-            console.log(phone(value))
-            this.phoneNumberInputError = true
-          } else {
-            console.log(phone(value))
-            this.phoneNumberInputError = false
-          }
-          break;
-        case 'address':
-          if(value.length === 0) {
-            this.addressInputError = true
-          } else {
-            this.addressInputError = false
-          }
-          break;
-        case 'dropshipper-name':
-          if(value.length === 0) {
-            this.dropshipperNameInputError = true
-          } else {
-            this.dropshipperNameInputError = false
-          }
-          break;
-        case 'dropshipper-phone-number':
-          if(value.length === 0) {
-            this.dropshipperPhoneNumberInputError = true
-          } else {
-            this.dropshipperPhoneNumberInputError = false
-          }
-          break;
-        default:
-          break;
+      if (isAllInputValid) {
+        ALLOW_GO_TO_1()
+      } else {
+        DISALLOW_GO_TO_1()
       }
-
-      allowSubmitToPayment()
     },
 
     allowSubmitToPayment() {

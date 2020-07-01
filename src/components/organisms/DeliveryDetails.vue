@@ -38,20 +38,27 @@ export default {
   },
   computed: {
     ...mapState({
-      purchaseItems: state => state.orders.purchase_items,
-      isDropshipper: state => state.orders.delivery_details.dropshipper.is_dropshipper,
-      dropshippingFee: state => state.extras.dropshipping_fee,
-      selectedShipmentVendor: state => state.orders.shipment_vendor,
-      selectedPaymentMethod: state => state.orders.payment_method,
-      stepperPosition: state => state.stepper.stepper_position,
       deliveryDetails: state => state.orders.delivery_details,
       stepper0Valid: state => state.stepper.stepper_0_valid
     })
   },
   methods: {
-    ...mapMutations(['SETUP_DROPSHIPPER']),
+    ...mapMutations([
+      'SETUP_DROPSHIPPER',
+      'DISALLOW_GO_TO_1',
+      'ALLOW_GO_TO_1',
+    ]),
     clickDropshipperCheckBox() {
-      this.SETUP_DROPSHIPPER(this.isDropshipper)
+      const {
+        dropshipper
+      } = this.deliveryDetails
+      if (!dropshipper.is_dropshipper && (!dropshipper.name || !dropshipper.phone_number)) {
+        this.SETUP_DROPSHIPPER(this.isDropshipper)
+        this.DISALLOW_GO_TO_1()
+      } else {
+        this.SETUP_DROPSHIPPER(this.isDropshipper)
+        this.ALLOW_GO_TO_1()
+      }
       console.log(this.isDropshipper)
     }
   }

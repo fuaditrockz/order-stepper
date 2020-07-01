@@ -95,10 +95,11 @@ export default {
       return this.selectedPaymentMethod ? 'Pay with ' + this.selectedPaymentMethod.name : 'Select payment method'
     },
     isDisabledButton() {
+      console.log(this.stepper0Valid)
       if (this.stepper0Valid) {
-        return true
+        return false
       }
-      return false
+      return true
     }
   }
 }

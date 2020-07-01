@@ -156,19 +156,18 @@ export default {
         ALLOW_GO_TO_1,
         DISALLOW_GO_TO_1
       } = this
-
       if (isDropshipper) {
         !emailInputError && !phoneNumberInputError && !addressInputError && !dropshipperNameInputError && !dropshipperPhoneNumberInputError ? (
-          DISALLOW_GO_TO_1()
-        ) : (
           ALLOW_GO_TO_1()
+        ) : (
+          DISALLOW_GO_TO_1()
         )
       } else {
-        !emailInputError && !phoneNumberInputError && !addressInputError ? (
-          DISALLOW_GO_TO_1()
-        ) : (
+        if (!emailInputError && !phoneNumberInputError && !addressInputError) {
           ALLOW_GO_TO_1()
-        )
+        } else {
+          DISALLOW_GO_TO_1()
+        }
       }
     }
   }

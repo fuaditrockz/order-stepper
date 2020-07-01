@@ -4,16 +4,19 @@ const state = {
     {
       id: "gosend",
       name: "GO-SEND",
+      estimation: 0,
       price: 15000
     },
     {
       id: "jne",
       name: "JNE",
+      estimation: 2,
       price: 9000
     },
     {
       id: "personalcounter",
       name: "Personal Counter",
+      estimation: 1,
       price: 29000
     }
   ],

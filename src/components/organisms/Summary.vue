@@ -9,6 +9,7 @@
         title="Delivery Estimation"
         :vendor="_store_shipment_vendor.name"
         type="shipment"
+        :estimation="_store_shipment_vendor.estimation"
         v-if="_store_shipment_vendor"
       />
       <ExtrasSelectedList
